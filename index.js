@@ -3,30 +3,30 @@ var request = Promise.promisifyAll(require('request'));
 var _ = require('lodash');
 
 var settings = {
-	user: {
-		email: ''
-	},
-	domain: {
-		token: '',
-		name: ''
-	},
-	recordToCreate: {
-		name: '',
-		record_type: 'CNAME',
-		content: ''
-	}
+  user: {
+    email: ''
+  },
+  domain: {
+    token: '',
+    name: ''
+  },
+  recordToCreate: {
+    name: '',
+    record_type: 'CNAME',
+    content: ''
+  }
 };
 
 var api = {
-	getToken: _.template('https://api.dnsimple.com/v1/domains/<%= domain %>'),
-	createRecord: _.template('https://api.dnsimple.com/v1/domains/<%= domain %>/records')
+  getToken: _.template('https://api.dnsimple.com/v1/domains/<%= domain %>'),
+  createRecord: _.template('https://api.dnsimple.com/v1/domains/<%= domain %>/records')
 };
 
 request.getAsync({
-	url: api.getToken({ domain: settings.domain.name }),
-	headers: {
-		'X-DNSimple-Domain-Token': settings.domain.token
-	}
+  url: api.getToken({ domain: settings.domain.name }),
+  headers: {
+    'X-DNSimple-Domain-Token': settings.domain.token
+  }
 })
 .spread(function(response, body) {
   if (response.statusCode >= 400 && response.statusCode < 500) {
@@ -37,19 +37,19 @@ request.getAsync({
   return content.domain.token;
 })
 .then(function (token) {
-	var obj = {
-		url: api.createRecord({ domain: settings.domain.name }),
-		body: {
-			record: settings.recordToCreate
-		},
-		json: true,
-		headers: {
-			'Accept': 'application/json',
-			'X-DNSimple-Token': settings.user.email + ':' + token
-		}
-	};
+  var obj = {
+    url: api.createRecord({ domain: settings.domain.name }),
+    body: {
+      record: settings.recordToCreate
+    },
+    json: true,
+    headers: {
+      'Accept': 'application/json',
+      'X-DNSimple-Token': settings.user.email + ':' + token
+    }
+  };
 
-	return request.postAsync(obj);
+  return request.postAsync(obj);
 })
 .spread(function (response, body) {
   if (response.statusCode >= 400 && response.statusCode < 500) {
