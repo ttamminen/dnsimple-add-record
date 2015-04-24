@@ -10,11 +10,12 @@ var settings = {
     token: '',
     name: ''
   },
-  recordToCreate: {
-    name: '',
-    record_type: 'CNAME',
-    content: ''
-  }
+};
+
+var recordToCreate = {
+  name: '',
+  record_type: 'CNAME',
+  content: ''
 };
 
 var api = {
@@ -40,7 +41,7 @@ request.getAsync({
   var obj = {
     url: api.createRecord({ domain: settings.domain.name }),
     body: {
-      record: settings.recordToCreate
+      record: recordToCreate
     },
     json: true,
     headers: {
