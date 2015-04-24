@@ -1,0 +1,24 @@
+{
+  "name": "dnsimple-add-record",
+  "version": "1.0.0",
+  "description": "Example how to add a DNS record programmatically using Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ttamminen/dnsimple-add-record.git"
+  },
+  "keywords": [
+    "node",
+    "request",
+    "dnsimple"
+  ],
+  "author": "Tatu Tamminen / TripleT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ttamminen/dnsimple-add-record/issues"
+  },
+  "homepage": "https://github.com/ttamminen/dnsimple-add-record"
+}
