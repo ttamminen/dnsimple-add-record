@@ -20,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/ttamminen/dnsimple-add-record/issues"
   },
-  "homepage": "https://github.com/ttamminen/dnsimple-add-record"
+  "homepage": "https://github.com/ttamminen/dnsimple-add-record",
+  "dependencies": {
+    "bluebird": "^2.9.24",
+    "lodash": "^3.7.0",
+    "request": "^2.55.0"
+  }
 }
