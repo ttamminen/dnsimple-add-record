@@ -38,7 +38,7 @@ request.getAsync({
   return content.domain.token;
 })
 .then(function (token) {
-  var obj = {
+  return request.postAsync({
     url: api.createRecord({ domain: settings.domain.name }),
     body: {
       record: recordToCreate
@@ -48,9 +48,7 @@ request.getAsync({
       'Accept': 'application/json',
       'X-DNSimple-Token': settings.user.email + ':' + token
     }
-  };
-
-  return request.postAsync(obj);
+  });
 })
 .spread(function (response, body) {
   if (response.statusCode >= 400 && response.statusCode < 500) {
